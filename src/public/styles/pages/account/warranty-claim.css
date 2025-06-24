@@ -1,0 +1,206 @@
+@import url('/styles/general.css');
+@import url('/styles/components/warranty-item.css');
+@import url('/styles/components/popup-warranty.css');
+@import url('/styles/components/success-modal.css');
+@import url("/styles/components/sidebar_account.css");
+
+
+
+body {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-white);
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+.account-container {
+    width: 80%;
+    max-width: 1152px;
+    padding: 0;
+    margin: 24px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.warranty__main {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+
+/* 1024px - Mini PC */
+@media only screen and (max-width: 64rem) {
+    .purchase__status {
+        padding: 12px 24px;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    #purchase-item__price {
+        gap: 8px;
+    }
+
+    .popup__subtitle {
+        font-size: 0.75rem;
+    }
+
+    .popup__note {
+        font-size: 0.875rem;
+    }
+
+    .btn-warranty {
+        font-size: 0.8125rem;
+    }
+
+    .purchase-item__product-detail h4 {
+        font-size: 1rem;
+    }
+
+    .purchase-item__product-detail {
+        width: 300px;
+    }
+}
+
+/* 768px - Tablet */
+@media only screen and (max-width: 48rem) {
+    .account-container {
+        width: 95%;
+        margin: 16px 0;
+        padding-top: 24px;
+    }
+
+    h2 {
+        font-size: 1.125rem;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
+
+    h5 {
+        font-size: 0.875rem;
+    }
+
+    small {
+        font-size: 0.75rem;
+    }
+
+    .purchase__status {
+        padding: 12px 24px;
+    }
+
+    #purchase-item__price {
+        gap: 8px;
+    }
+
+    .purchase-item__status {
+        font-size: 0.875rem;
+    }
+
+    .purchase-item__info p {
+        font-size: 0.875rem;
+    }
+
+    button {
+        height: 42px;
+    }
+
+    button.btn--outlined.pri {
+        font-size: 0.875rem;
+        padding: 0 18px;
+    }
+
+    button.btn--filled.pri {
+        font-size: 0.875rem;
+        padding: 0 18px;
+    }
+
+    .popup__subtitle {
+        font-size: 0.75rem;
+    }
+
+    .popup__note {
+        font-size: 0.875rem;
+    }
+
+    .btn-warranty {
+        font-size: 0.75rem;
+    }
+
+    .purchase-item__product-detail h4 {
+        font-size: 0.875rem;
+    }
+
+    .purchase-item__product-detail {
+        width: 240px;
+    }
+
+    .popup__main {
+        width: 70%;
+    }
+}
+
+/* 416px - Mobile*/
+@media only screen and (max-width: 26rem) {
+    .account-aside {
+        display: none;
+    }
+
+    .account-container {
+        width: 100%;
+        margin: 12px 0;
+        padding-top: 24px;
+    }
+
+    #sidebar {
+        display: none;
+    }
+
+    .purchase-item__product-detail {
+        width: 180px;
+    }
+
+    .popup__main {
+        width: 100%;
+    }
+
+    .popup {
+        padding-top: 0px;
+        border-radius: 0px;
+    }
+
+    .popup__subtitle {
+        font-size: 0.6875rem;
+    }
+
+    .close-btn {
+        display: none;
+    }
+}
+
+
+.warranty-detail__input {
+    position: relative;
+}
+
+.warranty-detail__input .reset__error {
+    color: var(--red);
+    font-size: 0.8rem;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    transform: translateY(-0%);
+    pointer-events: none;
+    transition: 0.4s;
+}

@@ -1,0 +1,170 @@
+.slider-container {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	position: relative;
+}
+
+.slideshow-container {
+	width: 100%;
+}
+
+.slides img {
+	width: 100%;
+	max-height: 300px;
+	display: none;
+	border-radius: 4px;
+	object-fit: contain;
+}
+
+button.prev,
+button.next {
+	position: absolute;
+	top: 42%;
+	width: auto;
+	padding: 8px;
+	margin-top: -22px;
+	font-size: 24px;
+	font-weight: bold;
+	color: white;
+	background-color: rgb(170, 168, 168);
+	opacity: 0.5;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+button.prev {
+	left: 10px;
+}
+
+button.next {
+	right: 10px;
+}
+
+button.prev:hover {
+	background-color: rgb(241, 247, 247);
+	color: black
+}
+
+button.next:hover {
+	background-color: rgb(241, 247, 247);
+	color: black
+}
+
+.thumbnail-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.thumbnails {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+}
+
+.thumbnails img {
+	cursor: pointer;
+	width: 80px;
+	height: 60px;
+	padding: 4px;
+	object-fit: contain;
+	border-radius: 4px;
+}
+
+.thumbnail-active {
+	box-shadow: inset 0px 0px 0px 1px var(--primary-color-2);
+}
+
+.thumbnails img:hover {
+	opacity: 1;
+}
+
+.slider-counter {
+	width: 80px;
+	padding: 4px;
+	border: 1px solid var(--dark-gray-o50);
+	border-radius: 20px;
+	color: var(--white);
+	background-color: var(--dark9);
+	opacity: 0.5;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 72%;
+	left: calc(50% - 40px);
+}
+
+.slider-counter p {
+	opacity: 1;
+}
+
+/* 1024px - Mini PC */
+@media only screen and (max-width: 64rem) {
+	.slides img {
+		height: 250px;
+	}
+	.slider-counter {
+		top: 70%;
+	}
+
+	.thumbnails {
+		gap: 4px;
+	}
+
+	.thumbnails img {
+		width: 70px;
+		height: 50px;
+	}
+
+	button.prev {
+		left: 5px;
+	}
+	
+	button.next {
+		right: 5px;
+	}
+}
+
+/* 768px - Tablet */
+@media only screen and (max-width: 48rem) {
+	.slides img {
+		height: 240px;
+	}
+	.thumbnails img {
+		width: 60px;
+		height: 40px;
+	}
+
+	.slider-counter {
+		top: 73%;
+	}
+}
+
+/* 416px - Mobile */
+@media only screen and (max-width: 26rem) {
+	.slides img {
+		height: 230px;
+	}
+	.slider-container {
+		width: 100%;
+	}
+	.thumbnails img {
+		width: 15%;
+	}
+
+	.slider-counter {
+		top: 72%;
+	}
+	button.prev {
+		left: 10px;
+	}
+	
+	button.next {
+		right: 10px;
+	}
+}

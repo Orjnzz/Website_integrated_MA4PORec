@@ -1,0 +1,72 @@
+<div class="wrapper-carousel">
+	<div class="carousel__label">
+		<h2 class="carousel__title"><%= title %></h2>
+		<div class="carousel__label-seemore">
+			<a href="/search/results<%= seemore %>">Xem tất cả</a>
+			<span class="material-symbols-outlined"> chevron_right </span>
+		</div>
+	</div>
+	<span id="left" class="arrow left material-symbols-outlined"> chevron_left </span>
+
+	<div class="carousel__list">
+		<ul class="carousel">
+			<% products.forEach(function(product) { %>
+			<li class="carousel__card">
+				<a class="carousel__card-main" href="/search/<%= product.product_variant_id %>?category_id=<%= product.category_id %>">
+					<% if (product.discount_amount) { %>
+					<div class="carousel__card--badge">-<%= product.discount_amount %>%</div>
+					<% } %>
+					<div class="carousel__card--top">
+						<div class="carousel__card--img">
+							<img src="/imgs/product_image/P<%= product.product_id %>/<%= product.product_avt_img %>" alt="<%= product.product_name %>" draggable="false">
+						</div>
+						<div class="carousel__card-details">
+							<span class="carousel__card-catagory"><%= product.category_name ?? 'null' %></span>
+							<% if (product.product_rate) { %>
+							<div class="carousel__card-rate">
+								<% for (let i = 0; i < Math.floor(product.product_rate); i++) { %>
+								<span class="material-symbols-outlined">star</span>
+								<% } %>
+
+								<% if (product.product_rate % 1 !== 0.5) { %>
+								<% if (product.product_rate - Math.floor(product.product_rate) > 0) { %>
+								<span class="material-symbols-outlined">star_half</span>
+								<% } %>
+								<% for (let i = 0; i < Math.floor(5 - Math.ceil(product.product_rate)); i++) { %>
+								<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0">star</span>
+								<% } %>
+								<% } else { %>
+								<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0">star</span>
+								<% } %>
+								<p>(<%= product.product_rate %>)</p>
+							</div>
+							<% } %>
+
+							<h4 title="<%= product.product_name ?? 'Null' %>">
+								<% if (product.product_name.length > 30) { %>
+								<%= product.product_name.substring(0, 30) + '...' %>
+								<% } else { %>
+								<%= product.product_name ?? 'null' %>
+								<% } %>
+							</h4>
+							<p><%= product.discount_description %></p>
+						</div>
+					</div>
+
+					<div class="carousel__card-bottom-details">
+						<div class="carousel__card-price">
+							<% if (product.discount_amount) { %>
+							<% const discountedPrice = Math.round(product.product_variant_price - product.product_variant_price * (product.discount_amount / 100)) %>
+							<%= toCurrency(discountedPrice) %><small><%= toCurrency(product.product_variant_price) %></small>
+							<% } else { %>
+							<%= toCurrency(product.product_variant_price) %>
+							<% } %>
+						</div>
+					</div>
+				</a>
+			</li>
+			<% }) %>
+		</ul>
+	</div>
+	<span id="right" class="arrow right material-symbols-outlined"> chevron_right </span>
+</div>

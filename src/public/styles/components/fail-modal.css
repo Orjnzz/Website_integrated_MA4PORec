@@ -1,0 +1,72 @@
+.fail-modal {
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+}
+
+.fail-modal__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.fail-modal__content {
+    z-index: 10000;
+    width: 30%;
+    padding: 48px 24px;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--white);
+    display: inherit;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 16px;
+}
+
+.fail-modal__content img {
+    width: 80px;
+    height: 80px;
+}
+
+/* 1024px - Tablet */
+@media only screen and (max-width: 64rem) {
+    .fail-modal__content {
+        width: 35%;
+        padding: 36px 24px;
+    }
+}
+
+/* 768px - Tablet */
+@media only screen and (max-width: 48rem) {
+    .fail-modal__content {
+        width: 40%;
+        padding: 24px;
+    }
+
+    .fail-modal__content h3 {
+        font-size: 1.125rem;
+    }
+
+}
+
+/* 416px - Tablet */
+@media only screen and (max-width: 26rem) {
+    .fail-modal__content {
+        width: 80%;
+        border-radius: 4px;
+        gap: 12px;
+    }
+
+    .fail-modal__close span {
+        font-size: 1.5rem;
+    }
+
+    .fail-modal__content h3 {
+        font-size: 1rem;
+    }
+}

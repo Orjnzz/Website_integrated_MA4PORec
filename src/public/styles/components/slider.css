@@ -1,0 +1,97 @@
+.slider {
+    width: 100%;
+    height: 400px;
+    margin: 156px auto 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider .list {
+    position: absolute;
+    max-width: max-content;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    transition: 1s;
+}
+
+.slider .item {
+    width: 100vw;
+}
+
+.slider .list img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider .buttons {
+    position: absolute;
+    top: 45%;
+    left: 5%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.slider .buttons button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #fff5;
+    color: #fff;
+    border: none;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.slider .buttons button:hover {
+    cursor: pointer;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+}
+
+.slider .dots {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    color: #fff;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+.slider .dots:hover {
+    cursor: pointer;
+}
+
+.slider .dots li {
+    list-style: none;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    margin: 3px;
+    border-radius: 20px;
+    transition: 0.5s;
+}
+
+.slider .dots li.active {
+    width: 30px;
+}
+
+@media screen and (max-width: 48rem) {
+    .slider {
+        height: 300px;
+        margin-top: 140px;
+    }
+}
+
+@media screen and (max-width: 26rem) {
+    .slider {
+        height: 250px;
+        margin-top: 112px;
+    }
+}

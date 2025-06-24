@@ -1,0 +1,387 @@
+@import url("/styles/general.css");
+@import url("/styles/components/sidebar_account.css");
+@import url("/styles/components/success-modal.css");
+
+body {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--bg-white);
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+hr {
+	border: 0.5px solid var(--outline-gray);
+}
+
+.account-container {
+	width: 80%;
+	padding: 0;
+	margin: 24px 0;
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+}
+
+.purchase-detail__main {
+	display: flex;
+	flex-direction: column;
+	/* gap: 24px; */
+	width: 100%;
+}
+
+.purchase-detail--top {
+	display: flex;
+	justify-content: space-between;
+}
+
+.purchase-detail__info p {
+	font-size: 1.125rem;
+}
+
+.purchase-detail__info {
+	display: flex;
+	gap: 4px;
+}
+
+.purchase-detail__status p {
+	font-size: 1.125rem;
+}
+
+.purchase-detail__date-time {
+	margin-top: 4px;
+	display: flex;
+	gap: 4px;
+}
+
+.purchase-detail__date-time p {
+	font-size: 0.875rem;
+	color: var(--dark-gray-o50);
+}
+
+.purchase-detail__order-info {
+	margin-top: 18px;
+	display: grid;
+	grid-template-columns: 63% auto;
+	grid-gap: 20px;
+}
+
+.purchase-detail__order-info__user {
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	border-radius: 8px;
+	padding: 16px;
+}
+
+.purchase-detail__order-info__user h5 {
+	display: flex;
+	align-items: center;
+	margin-bottom: 4px;
+}
+
+.purchase-detail__order-info__user h5 .material-symbols-outlined {
+	margin-right: 8px;
+	color: var(--primary-color-2);
+}
+
+.purchase-detail__order-info__user>div {
+	display: grid;
+	grid-template-columns: 22% auto;
+}
+
+.purchase-detail__order-info__user-detail {
+	margin: 4px 0;
+}
+
+.order-info__label {
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.purchase-detail__order-info__payment {
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	border-radius: 8px;
+	padding: 16px;
+}
+
+.purchase-detail__order-info__payment h5 {
+	display: flex;
+	align-items: center;
+	margin-bottom: 8px;
+}
+
+.purchase-detail__order-info__payment h5 .material-symbols-outlined {
+	margin-right: 8px;
+	color: var(--primary-color-2);
+}
+
+.purchase-detail__bill {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 24px;
+	background-color: white;
+	border-radius: 8px;
+	padding: 16px;
+}
+
+.purchase-detail__bill h5 {
+	display: flex;
+	align-items: center;
+	margin-bottom: 4px;
+}
+
+.purchase-detail__bill h5 .material-symbols-outlined {
+	margin-right: 8px;
+	color: var(--primary-color-2);
+}
+
+.purchase-detail__element {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.purchase-detail__element a {
+	text-decoration: none;
+	color: black;
+}
+
+.purchase-detail__element h5 {
+	font-weight: 600;
+}
+
+.purchase-detail__element--left {
+	display: flex;
+	align-items: flex-start;
+	align-items: center;
+	gap: 12px;
+}
+
+.purchase-detail__product-img {
+	object-fit: contain;
+	width: 80px;
+}
+
+.purchase-detail hr {
+	margin: 12px 0;
+	border: 0.5px solid #eaeaea;
+}
+
+.purchase-detail__price {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	color: var(--fire-orange);
+}
+
+.purchase-detail__product-detail {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.purchase-detail__variant {
+	color: var(--dark-gray-o50);
+	font-size: 0.875rem;
+}
+
+small {
+	font-size: 0.875rem;
+	color: var(--dark-gray-o50);
+	text-decoration: line-through;
+}
+
+.purchase-detail__order-price {
+	display: flex;
+	align-items: flex-end;
+	flex-flow: column;
+	background: white;
+}
+
+.purchase-detail__order-price p {
+	margin-bottom: 10px;
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.paid-amount {
+	color: var(--primary-color-1);
+	font-size: 1.5rem;
+}
+
+.paid-amount.cancelled {
+	color: gray;
+}
+
+.purchase-detail__final {
+	font-weight: 700;
+}
+
+.purchase-detail__button {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+}
+
+.purchase-detail__button .btn.btn--outlined.pri,
+.purchase-detail__button .btn.btn--filled.pri {
+	width: 148px;
+	height: 48px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 2px;
+	text-align: center;
+	line-height: 1.15;
+}
+
+.purchase-detail__button .btn.btn--outlined.pri.cancel {
+	border-color: var(--dollar-red);
+	color: var(--dollar-red);
+}
+
+.purchase-detail__button .btn.btn--outlined.pri.cancel:hover {
+	border-color: var(--dollar-red);
+	background-color: var(--dollar-red);
+	color: white;
+}
+
+.purchase-detail__button .btn.btn--filled.pri.disable {
+	background-color: var(--dark7);
+}
+
+.purchase-detail__button .btn.btn--filled.pri.disable:hover {
+	cursor: default;
+	box-shadow: none;
+}
+
+.purchase-detail__status-container {
+	display: flex;
+	gap: 4px;
+	align-items: center;
+}
+
+.purchase-detail__status {
+	font-weight: 500;
+	font-size: 1rem;
+}
+
+.purchase-detail__status-container.cancel {
+	color: var(--dollar-red2);
+}
+
+.purchase-detail__status-container.finished {
+	color: var(--green);
+}
+
+.purchase-detail__status-container.delivering {
+	color: var(--primary-color-2);
+}
+
+.purchase-detail__status-container.unpaid {
+	color: var(--dark7);
+}
+
+.purchase-detail__img {
+	object-fit: contain;
+	width: 100px;
+}
+
+
+@media only screen and (max-width: 64rem) {
+	.purchase-detail__order-info {
+		grid-template-columns: none;
+	}
+
+	.purchase-detail__order-price p {
+		width: 100%;
+	}
+
+	.order-info__label {
+		font-size: 0.875rem;
+	}
+}
+
+/*Responsive-tablet*/
+@media only screen and (max-width: 48rem) {
+
+	.account-container {
+		width: 90%;
+	}
+
+	.purchase-detail__order-info {
+		grid-template-columns: none;
+	}
+
+	p {
+		font-size: 0.875rem;
+	}
+
+	h4 {
+		font-size: 1rem;
+	}
+
+	h5 {
+		font-size: 0.875rem;
+	}
+
+	.purchase-detail__info p {
+		font-size: 1rem;
+	}
+
+	.purchase-detail__status {
+		font-size: 0.875rem;
+	}
+
+	.purchase-detail__date-time p {
+		font-size: 0.8175rem;
+	}
+
+	.purchase-detail__product-detail h4 {
+		font-size: 0.875rem;
+	}
+
+	small {
+		font-size: 0.75rem;
+	}
+
+	.purchase-detail__price {
+		gap: 8px;
+	}
+
+	.purchase-detail__button .btn.btn--outlined.pri,
+	.purchase-detail__button .btn.btn--filled.pri {
+		width: 120px;
+		height: 44px;
+		padding: 0 12px;
+		font-size: 0.875rem;
+	}
+
+	.paid-amount {
+		font-size: 1.25rem;
+	}
+}
+
+@media only screen and (max-width: 26rem) {
+	.purchase-detail__order-info__user-detail p {
+		font-size: 0.875rem;
+	}
+
+	p.order-info__payment-detail {
+		font-size: 0.875rem;
+	}
+}

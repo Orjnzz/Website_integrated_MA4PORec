@@ -1,0 +1,188 @@
+@import url("/styles/general.css");
+@import url("/styles/pages/account/information.css");
+
+
+.userName {
+    width: 60%;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.userBirth {
+    width: 60%;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.userSex {
+    width: 60%;
+    border-bottom: 2px solid #eaeaea;
+
+}
+
+.userEmail {
+    width: 60%;
+    border-bottom: 2px solid #eaeaea;
+
+}
+
+.userPhone {
+    width: 60%;
+    border-bottom: 2px solid #eaeaea;
+
+}
+
+.userAddress {
+    width: 60%;
+    border-bottom: 2px solid #eaeaea;
+
+}
+
+.purchase-item__product-name {
+    display: flex;
+    flex-direction: row;
+}
+
+.purchase-item__product-name label {
+    padding: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 20%;
+}
+
+#userSex {
+    font-size: 1rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-indent: 4px;
+}
+
+#userBirth {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    gap: 12px;
+    padding: 0 12px 0 0;
+    text-indent: 4px;
+}
+
+.popup__button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+    gap: 12px;
+}
+
+.popup__button a.btn.btn--outlined.pri.btn-cancel-edit {
+    width: 76.51px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 0px 24px;
+}
+
+.purchase-item__product-detail input,
+select {
+    height: 40px;
+    font-size: 16px;
+    outline-color: var(--primary-color-1);
+}
+
+.purchase-item__product-detail select,
+.purchase-item__product-detail input[type="date"] {
+    cursor: pointer;
+}
+
+.purchase-item__product-detail input {
+    padding: 8px;
+    width: 100%;
+    border-radius: 8px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.purchase-item__product-name {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.userBirth span {
+    display: flex;
+    cursor: pointer;
+    padding: 8px;
+    height: 40px;
+    width: 100%;
+    align-items: center;
+}
+
+.purchase-item__product-name .error-message {
+    display: flex;
+    color: red;
+    font-size: 13px;
+    position: absolute;
+    bottom: -7px;
+    justify-content: center;
+    margin-top: 8px;
+    text-indent: 8px;
+}
+
+span.red-start {
+    color: red;
+}
+
+/*Responsive-small-laptop*/
+@media only screen and (max-width: 64rem) {
+    .purchase-item__product-name label {
+        width: 30%;
+    }
+}
+
+@media only screen and (max-width: 48rem) {
+    .purchase-item {
+        padding: 12px;
+    }
+
+    .purchase-item__product-name label {
+        width: 35%;
+    }
+}
+
+@media only screen and (max-width: 26rem) {
+    .purchase-item__product-detail input {
+        font-size: 14px;
+    }
+
+    #userSex {
+        font-size: 0.875rem;
+    }
+
+    button {
+        height: 42px !important;
+    }
+
+    button.btn--outlined.pri {
+        font-size: 0.875rem !important;
+        padding: 0 18px !important;
+    }
+
+    button.btn--filled.pri {
+        font-size: 0.875rem !important;
+        padding: 0 18px !important;
+    }
+
+    .purchase-item__product-name .error-message {
+        margin-left: -18%;
+    }
+
+    .purchase-item__product-name label {
+        width: 47%;
+        align-items: center;
+    }
+
+    .purchase-item__product-name input,
+    select {
+        width: 100%;
+    }
+
+    .popup__button a.btn.btn--outlined.pri.btn-cancel-edit {
+        height: 42px;
+        width: 60.95px;
+        text-align: center;
+        font-size: 0.875rem;
+        padding: 0px 18px;
+    }
+}
