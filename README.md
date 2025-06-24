@@ -92,9 +92,8 @@ CREATE DATABASE ie104_group2;
 Sau khi thực hiện cách trên bạn sẽ có đầy đủ cơ sở dữ liệu của trang web. Kết quả như trong hình:
 
 #### Bước 4: Thực hiện clone repository này với lệnh
-```
-https://github.com/NunNunIT/IE104.O12.Group2.git
-```
+
+
 #### Bước 5: Mở dự án mới clone về và thực hiện các câu lệnh sau
 ```
 npm install
