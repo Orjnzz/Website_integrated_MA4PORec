@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="theme-color" content="#2a7ee4">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="IE104.O12_Nhom2">
+	<meta name="description" content="Tạo kiện thuận tiện nhất cho khách hàng luôn được TECHTWO đầu tư, kết hợp thanh toán bằng nền tảng MOMO là một trong số đó.">
+
+	<link rel="shortcut icon" type="image/x-icon" href="/imgs/ico-logo-blue.png">
+	<link rel="stylesheet" href="/styles/pages/order/momo.css">
+
+	<title>TECHTWO. Thanh toán MoMo</title>
+</head>
+
+<body>
+
+	<%- include('../../partials/header', { header: header, user: user }) %>
+	<%- include('../../partials/breadcrumb', { breadcrumbs : [{ text : 'Đặt hàng', link : '' }, { text : 'Thanh toán', link : '' }] }) %>
+
+	<main class="momo-container">
+		<div class="momo_left-frame">
+			<div class="momo_left-box">
+				<div class="momo-box">
+					<div class="momo-header">
+						<img src="/imgs/transaction/momo.png" alt="momo">
+						<h3 class="header-text"><strong>THANH TOÁN BẰNG MOMO</strong></h3>
+					</div>
+					<div class="inner-box">
+						<div class="info-order">
+							<div class="info-order__header">
+								<div class="info-order__header--left">
+									<p><strong>ĐƠN HÀNG:</strong></p>
+									<p id="trans__id">#DH00<%=purchase.order_id%></p>
+								</div>
+							</div>
+							<div class="info-order__bill">
+								<span>- <strong>Người đặt hàng: </strong><span id="purchase-info"><%=purchase.order_name%></span></span>
+								<span>- <strong>Tổng tiền: </strong><span id="purchase-amount">
+										<% if (purchase.order_details.length > 0) { %>
+										<% let totalAmount = 0; %>
+										<% purchase.order_details.forEach(detail => { %>
+										<% totalAmount += detail.order_detail_price_after; %>
+										<% }); %>
+										<%= formatFunction.toCurrency(totalAmount) %>
+										<% } %>
+									</span></span>
+							</div>
+						</div>
+
+						<div class="purchase-status">Đơn hàng chưa được thanh toán</div>
+					</div>
+				</div>
+			</div>
+			<div class="momo_left-cancel">Hủy bỏ</div>
+		</div>
+
+		<div class="momo-qr">
+			<h4>Quét mã QR để thanh toán</h4>
+			<div class="scanning-box">
+				<img src="/imgs/transaction/momo_qr.png" alt="momo_qr">
+				<div class="image-container"></div>
+				<div class="border">
+				</div>
+			</div>
+			<div class="qr-instruct">
+				<div class="qr-instruct-1">
+					<span class="material-symbols-outlined">qr_code_2</span>
+					<div>Sử dụng App MoMo hoặc ứng dụng</div>
+				</div>
+				<div class="qr-instruct-1">
+					<div>camera hỗ trợ QR code để quét mã</div>
+				</div>
+			</div>
+			<div class="momo_left-cancel_ip">Hủy bỏ</div>
+		</div>
+	</main>
+
+	<%- include('../../components/success-modal', {action: 'Thanh toán'}) %>
+	<%- include('../../components/scrollup') %>
+	<%- include('../../partials/footer') %>
+	<%- include('../../partials/app-bar') %>
+
+	<script src="/scripts/pages/order/momo.js"></script>
+	<script src="/scripts/partials/header.js"></script>
+
+</body>
+
+</html>

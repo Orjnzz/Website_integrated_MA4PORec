@@ -1,0 +1,47 @@
+{
+  "name": "ie104.o12.group2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon ./index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NunNunIT/IE104.O12.Group2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NunNunIT/IE104.O12.Group2/issues"
+  },
+  "homepage": "https://github.com/NunNunIT/IE104.O12.Group2#readme",
+  "dependencies": {
+    "@ai-sdk/amazon-bedrock": "1.1.6",
+    "@ai-sdk/anthropic": "1.1.6",
+    "@ai-sdk/google": "1.1.0",
+    "@ai-sdk/groq": "1.1.7",
+    "@ai-sdk/mistral": "1.1.15",
+    "@ai-sdk/openai": "^1.1.9",
+    "@ai-sdk/react": "^1.2.8",
+    "ai": "^4.3.5",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "installable": "^0.2.8",
+    "jsonwebtoken": "^9.0.2",
+    "mysql": "^2.18.1",
+    "node-fetch": "^2.7.0",
+    "status": "^0.0.13",
+    "url": "^0.11.3",
+    "util": "^0.12.5",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "description": ""
+}

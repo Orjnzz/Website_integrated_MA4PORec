@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="theme-color" content="#2a7ee4">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="IE104.O12_Nhom2">
+
+	<link rel="shortcut icon" type="image/x-icon" href="/imgs/ico-logo-blue.png">
+	<link rel="stylesheet" href="/styles/pages/site/category-mobile.css">
+
+	<title>TECHTWO. Danh mục sản phẩm</title>
+</head>
+
+<body>
+	<%- include('../../partials/header', { header: header }) %>
+
+	<main class="category-container">
+		<h2>Danh mục sản phẩm</h2>
+		<% header.cates.forEach(cate => { %>
+		<a class="category__item" href="/search/results?category_id=<%= cate.category_id %>">
+			<img src="/imgs/categories/<%= cate.category_img %>" alt="<%= cate.category_name %>">
+			<p><%= cate.category_name %> (<%= cate.category_count %>)</p>
+		</a>
+		<% }) %>
+	</main>
+
+	<%- include('../../components/scrollup') %>
+	<%- include('../../partials/footer') %>
+	<%- include('../../partials/app-bar') %>
+
+	<script src="/scripts/pages/site/category-mobile.js"></script>
+</body>
+
+</html>

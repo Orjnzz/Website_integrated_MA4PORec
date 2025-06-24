@@ -1,0 +1,32 @@
+<div class="purchase-item">
+	<div class="purchase-item--top">
+		<div class="purchase-item__info">
+			<h5>Đơn hàng:</h5>
+			<p id="purchase-item__id">#DH00<%= order.order_id ?? 'null' %></p>
+		</div>
+		<p class="purchase-item__date">Ngày mua: <%= formatFunction.toDDMMYYYY(new Date(order.order_date)) ?? '01/01/01' %></p>
+	</div>
+	<hr />
+	<div class="purchase-item__main">
+		<% order.order_details.forEach(orderDetail => { %>
+		<div class="purchase-item__element">
+			<div class="purchase-item__element--left">
+				<img src="/imgs/product_image/P<%= orderDetail.product_id %>/<%= orderDetail.product_avt_img %>" alt="<%= orderDetail.product_name %>" class="purchase-item__product-img">
+				<div class="purchase-item__product-detail">
+					<h4 id="purchase-item__product-name"><%= orderDetail.product_name ?? 'null' %></h4>
+					<p id="purchase-item__variant">Phân loại hàng: <%= orderDetail.product_variant_name ?? 'null' %></p>
+					<p id="purchase-item__amount">Số lượng: <%= orderDetail.order_detail_quantity ?? 'null' %></p>
+				</div>
+			</div>
+			<p class="btn-warranty">Yêu cầu bảo hành</p>
+			<%- include('../components/popup-warranty', { order: order, orderDetail: orderDetail }) %>
+		</div>
+		<hr />
+		<% }) %>
+	</div>
+	<div class="purchase-item--bottom">
+		<div class="noti-item__button">
+		</div>
+	</div>
+
+</div>

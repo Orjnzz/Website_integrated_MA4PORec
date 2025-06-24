@@ -1,0 +1,138 @@
+@import url("/styles/general.css");
+@import url("/styles/components/purchase-item.css");
+@import url("/styles/components/sidebar_account.css");
+@import url("/styles/components/sidebar_account.css");
+
+body {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--bg-white);
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+}
+
+.account-container {
+	width: 80%;
+	max-width: 1152px;
+	padding: 0;
+	margin: 24px;
+	display: flex;
+	gap: 12px;
+	align-items: flex-start;
+}
+
+.purchase__main {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	width: 100%;
+}
+
+.purchase-item--top {
+	margin-bottom: 20px !important;
+}
+
+.purchase__status {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 12px 36px;
+	width: 100%;
+	background-color: white;
+	border-radius: 8px;
+}
+
+.purchase-item__status {
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+.purchase-item__status a {
+	color: var(--primary-color-1)
+}
+
+.purchase-item__product-detail {
+	width: 100%;
+}
+
+.purchase-item__product-detail h5 {
+	display: inline !important;
+	margin-right: 10px;
+}
+
+.purchase-item__product-name {
+	padding: 8px;
+}
+
+.purchase-item__product-detail {
+	gap: 0 !important;
+}
+
+.purchase-item__product-detail>h5 {
+	margin-bottom: 5px;
+}
+
+.purchase-item__product-name {
+	display: flex;
+	flex-direction: row;
+}
+
+.purchase-item__product-name h5 {
+	display: flex;
+	width: 20%;
+}
+
+/*Responsive-small-laptop*/
+@media only screen and (max-width: 64rem) {
+	.purchase__status {
+		padding: 12px 24px;
+	}
+
+	.purchase-item__product-name h5 {
+		width: 25%;
+	}
+}
+
+/*Responsive-tablet*/
+@media only screen and (max-width: 48rem) {
+	.account-container {
+		width: 95%;
+		margin: 20px;
+	}
+
+	h5 {
+		font-size: 0.875rem;
+	}
+
+	.purchase__status {
+		padding: 12px 24px;
+	}
+}
+
+@media only screen and (max-width: 26rem) {
+	.account-container {
+		width: 90%;
+		margin-top: 12px;
+		padding: 0;
+	}
+
+	.purchase-item--top h3 {
+		font-size: 16px;
+	}
+
+	.purchase-item__product-detail h5 {
+		font-size: 14px;
+	}
+
+	.purchase-item__product-name {
+		font-size: 0.875rem;
+	}
+	.purchase-item__product-name h5 {
+		width: 35%;
+	}
+}

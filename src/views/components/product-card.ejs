@@ -1,0 +1,54 @@
+<div class="product-card" data-product-id="<%= product.product_variant_id %>">
+	<a class="product__card-main" href="/search/<%= product.product_variant_id %>?category_id=<%= product.category_id %>">
+		<div>
+			<% if (product.discount_amount) { %>
+			<div class="badge">-<%= product.discount_amount %>%</div>
+			<% } %>
+			<div class="product-tumb">
+				<img src="/imgs/product_image/P<%= product.product_id %>/<%= product.product_avt_img %>" alt="<%= product.product_name ?? 'NaN' %>">
+			</div>
+			<div class="product-details">
+				<span class="product-catagory"><%= product.category_name ?? 'NaN'%></span>
+				<% if (product.product_rate) { %>
+				<div class="product-rate">
+					<% for (let i = 0; i < Math.floor(product.product_rate); i++) { %>
+					<span class="material-symbols-outlined">star</span>
+					<% } %>
+
+					<% if (product.product_rate % 1 !== 0.5) { %>
+					<% if (product.product_rate - Math.floor(product.product_rate) > 0) { %>
+					<span class="material-symbols-outlined">star_half</span>
+					<% } %>
+					<% for (let i = 0; i < Math.floor(5 - Math.ceil(product.product_rate)); i++) { %>
+					<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0">star</span>
+					<% } %>
+					<% } else { %>
+					<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0">star</span>
+					<% } %>
+					<p>(<%= product.product_rate %>)</p>
+				</div>
+				<% } %>
+				<h4 title="<%= product.product_name ?? 'NaN' %>">
+					<% if (product.product_name.length > 30) { %>
+					<%= product.product_name.substring(0, 30) + '...' %>
+					<% } else { %>
+					<%= product.product_name ?? 'NaN' %>
+					<% } %>
+				</h4>
+				<p><%= product.discount_description %></p>
+			</div>
+		</div>
+
+		<div class="product-bottom-details">
+			<div class="product-price">
+				<% if (product.discount_amount) { %>
+				<% const discountedPrice = Math.round(product.product_variant_price - product.product_variant_price * (product.discount_amount / 100)) %>
+				<%= toCurrency(discountedPrice) %><small><%= toCurrency(product.product_variant_price) %></small>
+				<% } else { %>
+				<%= toCurrency(product.product_variant_price) %>
+				<% } %>
+			</div>
+		</div>
+	</a>
+
+</div>

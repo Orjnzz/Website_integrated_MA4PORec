@@ -1,0 +1,151 @@
+@import url("/styles/general.css");
+
+body {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--bg-gray);
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 2.125rem;
+    letter-spacing: 0.5px;
+}
+
+h2 {
+    font-size: 1.75rem;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.privacy__content p {
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin: 8px 0;
+    text-align: justify;
+}
+
+.privacy__content ul {
+    margin-left: 24px;
+    list-style-type: disc;
+}
+
+.privacy__content li {
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    line-height: 1.5;
+    text-align: justify;
+    margin: 4px 0;
+}
+
+.privacy__content a {
+    color: var(--primary-color-1);
+    font-weight: 500;
+}
+
+.privacy-container {
+    width: 80%;
+    max-width: 1152px;
+    padding: 24px;
+    margin: 24px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 12px;
+}
+
+.privacy__content {
+    padding: 0 12px 0 36px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.privacy__content .privacy__content-title {
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin: 12px 0
+}
+
+.highlight {
+    font-weight: 500;
+}
+
+.privacy__title {
+    margin-top: 24px;
+}
+
+.privacy__content-detail {
+    list-style-type: none;
+}
+
+.privacy__content-detail li {
+    font-size: 1rem;
+}
+
+
+/*Responsive-tablet*/
+@media only screen and (max-width: 48rem) {
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 0.875rem;
+    }
+
+    li {
+        font-size: 0.875rem;
+    }
+
+    .privacy-container {
+        margin: 24px 0;
+        width: 90%;
+    }
+}
+
+/*Responsive-smartphone*/
+@media only screen and (max-width: 26rem) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    p {
+        font-size: 0.75rem;
+    }
+
+    li {
+        font-size: 0.75rem;
+    }
+
+    .privacy-container {
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .privacy__content .privacy__content-title {
+        font-size: 1rem;
+    }
+
+    .privacy__content {
+        gap: 8px;
+    }
+
+    .privacy__content {
+        width: 90%;
+        padding: 0 4px 0 12px;
+    }
+}
