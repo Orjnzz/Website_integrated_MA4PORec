@@ -36,6 +36,7 @@ Ví dụ:
 Bây giờ, hãy trả lời câu hỏi sau:
 Câu hỏi: {question}
 Trả lời:"""
+
 general_prompt = PromptTemplate.from_template(general_template)
 
 sql_agent_prefix = """Bạn là một trợ lý AI chuyên gia về cơ sở dữ liệu MySQL của cửa hàng điện máy TechTwo.
@@ -73,22 +74,6 @@ Hãy luôn trả lời bằng tiếng Việt.
 6.  **QUAN TRỌNG NHẤT - ĐỊNH DẠNG ĐẦU RA (Output Format):**
     * Bạn phải trả lời theo định dạng gồm một chuỗi suy nghĩ và hành động.
     * Khi bạn đã có câu trả lời cuối cùng cho người dùng, bạn **BẮT BUỘC** phải bắt đầu bằng `Final Answer:`.
-    * **Ví dụ khi có kết quả:**
-        ```
-        Thought: Người dùng muốn biết giá của iPhone 15. Tôi cần truy vấn bảng product_variants.
-        Action: sql_db_query
-        Action Input: SELECT price FROM product_variants WHERE product_name LIKE '%iPhone 15%'
-        Observation: [(30000000)]
-        Thought: Tôi đã có giá. Bây giờ tôi sẽ trả lời người dùng.
-        Final Answer: Dạ, giá của sản phẩm iPhone 15 là 30,000,000đ ạ.
-        ```
-    * **Ví dụ khi kết quả rỗng:**
-        ```
-        Thought: Người dùng hỏi về một sản phẩm không có trong CSDL. Truy vấn trả về kết quả rỗng.
-        Observation: []
-        Thought: Tôi không tìm thấy thông tin. Tôi cần thông báo cho người dùng.
-        Final Answer: Rất tiếc, tôi không tìm thấy thông tin nào phù hợp với yêu cầu của bạn.
-        ```    
 """
 #Tạo 1 luồng riêng để chạy với deepinfra api key/ Google api key thì k cần
 def run_agent_in_thread(agent, user_input):
@@ -105,7 +90,11 @@ async def start():
 
 
     if not google_api_key:
-        await cl.Message(content="Lỗi: Không tìm thấy GOOGLE_API_KEY trong file .env.").send()
+        await cl.Message(content="Lỗi: Không tìm thấy API_KEY trong file .env.").send()
+        return
+    
+    if not deepinfra_api_token:
+        await cl.Message(content="Lỗi: Không tìm thấy API_KEY trong file .env.").send()
         return
 
     db_uri = f'mysql+mysqlconnector://{db_user}:{db_password}@{db_host}/{db_name}'
@@ -136,7 +125,7 @@ async def start():
         # )
 
         llm = ChatDeepInfra(
-            model_id="meta-llama/Meta-Llama-3-70B-Instruct",
+            model_id="google/gemini-2.0-flash-001",
             model_kwargs={"temperature": 0.0, "max_new_tokens": 2048}
         )
 
