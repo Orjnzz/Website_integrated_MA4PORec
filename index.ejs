@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="theme-color" content="#2a7ee4">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="IE104.O12_Nhom2">
+	<meta name="description" content="Chào mừng bạn đến với TECHTWO - địa chỉ mua sắm trực tuyến hàng đầu về điện máy! Khám phá thế giới công nghệ với sự đa dạng và chất lượng tốt nhất từ máy tính, điện thoại di động đến các sản phẩm gia dụng thông minh. Mua sắm an toàn, thuận tiện và tiết kiệm ngay hôm nay với các ưu đãi độc quyền. TECHTWO - Nơi nâng cao cuộc sống thông qua công nghệ!.">
+	<link rel="shortcut icon" type="image/x-icon" href="/imgs/ico-logo-blue.png">
+	<link rel="stylesheet" href="/styles/pages/site/index.css">
+
+	<title>TECHTWO.</title>
+</head>
+
+<body>
+	<%- include('../../partials/header', { header: header }) %>
+	<%- include('../../components/slider') %>
+
+	<main class="content-container">
+		<section class="cate">
+			<h2 class="cate__title">Danh mục sản phẩm</h2>
+			<div class="cate__content">
+				<% if (header.cates) { %>
+				<div class="cate__carousel" id="cateCarousel">
+					<% for(let i = 0; i < header.cates.length; i +=2) { %>
+					<div class="cate__carousel-col">
+						<%- include ('../../components/cate-item', { cate: header.cates[i] }) %>
+						<%- include ('../../components/cate-item', { cate: header.cates[i + 1] }) %>
+					</div>
+					<% } %>
+				</div>
+				<% } %>
+				<button type="button" class="cate__button" id="catePrev"><span class="material-symbols-outlined"> chevron_left </span></button>
+				<button type="button" class="cate__button" id="cateNext"><span class="material-symbols-outlined"> chevron_right </span></button>
+			</div>
+		</section>
+
+		<section class="outstanding-products">
+			<div class="outstanding-products__img"></div>
+			<%- include('../../components/carousel', {title: 'Gợi ý hôm nay', seemore: '?hotProduct=true' , products: outstandingProducts, toCurrency: formatFunction.toCurrency}) %>
+		</section>
+
+		<% if(newProducts) { %>
+		<section class="tip-products-wrapper new-products">
+			<div class="tip-products__img"></div>
+			<div class="tip-products">
+				<div class="tip-products__label">
+					<h2 class="tip-products__title">Hàng mới về</h2>
+					<div class="tip-products__seemore">
+						<a href="/search/results?newProduct=true">Xem tất cả</a>
+						<span class="material-symbols-outlined"> chevron_right </span>
+					</div>
+				</div>
+				<div class="tip-products__content">
+					<% newProducts.slice(0, 12).forEach(newProduct => { %>
+					<%- include('../../components/product-card', { product: newProduct, toCurrency: formatFunction.toCurrency }) %>
+					<% }) %>
+				</div>
+			</div>
+		</section>
+		<% } %>
+
+		<% if(discountProducts) { %>
+		<section class="tip-products-wrapper sale-products">
+			<div class="tip-products__img3"></div>
+			<div class="tip-products">
+				<div class="tip-products__label">
+					<h2 class="tip-products__title">Giá tốt, giá rẻ, mua ngay</h2>
+					<div class="tip-products__seemore">
+						<a href="/search/results?discount=true">Xem tất cả</a>
+						<span class="material-symbols-outlined"> chevron_right </span>
+					</div>
+				</div>
+				<div class="tip-products__content">
+					<% discountProducts.slice(0, 12).forEach(discountProduct => { %>
+					<%- include('../../components/product-card', { product: discountProduct, toCurrency: formatFunction.toCurrency }) %>
+					<% }) %>
+				</div>
+			</div>
+		</section>
+		<% } %>
+
+	</main>
+
+	<%- include('../../components/scrollup') %>
+	<%- include('../../partials/footer') %>
+	<%- include('../../partials/app-bar') %>
+
+	<script src="/scripts/components/carousel.js"></script>
+	<!-- Add enhanced carousel functionality -->
+	<script>
+		// Fix carousel product display issues
+		document.addEventListener('DOMContentLoaded', function() {
+			// Get all carousel navigation buttons
+			const carouselButtons = document.querySelectorAll('.carousel__button');
+			
+			// Add enhanced click handlers
+			carouselButtons.forEach(button => {
+				button.addEventListener('click', function(e) {
+					// Get the carousel container
+					const carouselContainer = this.closest('.carousel').querySelector('.carousel__container');
+					
+					// Ensure products are displayed after animation completes
+					setTimeout(() => {
+						// Force refresh display
+						carouselContainer.style.display = 'none';
+						setTimeout(() => {
+							carouselContainer.style.display = 'flex';
+						}, 10);
+					}, 300); // After carousel slide animation
+				});
+			});
+			
+			// Debug log for carousel items
+			console.log('Carousel items loaded:', document.querySelectorAll('.carousel__item').length);
+		});
+	</script>
+	<script src="/scripts/components/slider.js"></script>
+	<script src="/scripts/components/scrollup.js"></script>
+	<script src="/scripts/pages/site/index.js"></script>
+	<script src="/scripts/partials/header.js"></script>
+	<!-- thêm ở đây                                -->
+	<!-- Chatbot Button -->
+	<button id="chat-toggle" class="chat-toggle">
+		<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+			<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+		</svg>
+	</button>
+
+	<!-- Chatbot Container sử dụng iframe trực tiếp -->
+	<div id="chatbot-wrapper" class="chatbot-wrapper">
+		<div class="chatbot-header">
+			<h3>Hỗ trợ trực tuyến</h3>
+			<div class="chatbot-controls">
+				<button id="toggle-size" class="size-toggle">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+						<path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+					</svg>
+				</button>
+				<button id="close-chat">×</button>
+			</div>
+		</div>
+		<iframe id="chainlit-frame" src="http://localhost:8000" frameborder="0"></iframe>
+	</div>
+
+	<!-- CSS cho Chatbot -->
+	<style>
+	.chat-toggle {
+		position: fixed;
+		bottom: 20px;
+		right: 20px;
+		width: 60px;
+		height: 60px;
+		border-radius: 50%;
+		background-color: #007bff;
+		color: white;
+		border: none;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		cursor: pointer;
+		box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+		z-index: 999;
+	}
+
+	.chatbot-wrapper {
+		position: fixed;
+		bottom: 90px;
+		right: 20px;
+		width: 30vw;
+		max-width: 400px;
+		min-width: 280px;
+		height: 60vh;
+		max-height: 600px;
+		min-height: 400px;
+		border-radius: 10px;
+		background-color: white;
+		box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+		display: none;
+		flex-direction: column;
+		overflow: hidden;
+		z-index: 1000;
+	}
+
+	.chatbot-header {
+		background-color: #007bff;
+		color: white;
+		padding: 10px 15px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-shrink: 0;
+		z-index: 1002;
+		position: relative;
+		height: 43px;
+		box-sizing: border-box;
+		z-index: 10000;
+	}
+
+	.chatbot-header h3 {
+		margin: 0;
+		font-size: 16px;
+	}
+
+	.chatbot-header button {
+		background: none;
+		border: none;
+		color: white;
+		font-size: 20px;
+		cursor: pointer;
+	}
+
+	#chainlit-frame {
+		flex: 1;
+		width: 100%;
+		height: calc(100% - 43px) !important; 
+		border: none;
+		position: relative;
+		z-index: 9997; /* Đảm bảo iframe nằm dưới header */
+	}
+	/*MÀN HÌNH LỚN*/
+	@media (min-width: 1200px) {
+		.chatbot-wrapper {
+			width: 25vw;     
+			max-width: 450px;
+			height: 65vh;
+		}
+	}
+
+	/* tablet */
+	@media (max-width: 992px) {
+		.chatbot-wrapper {
+			width: 45vw;
+			height: 65vh;
+			right: 15px;
+			bottom: 85px;
+		}
+	}
+
+	/* màn hình nhỏ */
+	@media (max-width: 768px) {
+		.chatbot-wrapper {
+			width: 60vw;
+			height: 60vh;
+			right: 10px;
+			bottom: 80px;
+		}
+	}
+
+	/* điện thoại */
+	@media (max-width: 576px) {
+		.chatbot-wrapper {
+			width: 90%;
+			height: 70vh;
+			bottom: 80px;
+			right: 5%;
+			left: 5%;
+		}
+	}
+
+	/*điện thoại nhỏ */
+	@media (max-width: 375px) {
+		.chatbot-wrapper {
+			width: 95%;
+			height: 80vh;
+			right: 2.5%;
+			left: 2.5%;
+		}
+		
+		.chat-toggle {
+			width: 50px;
+			height: 50px;
+			bottom: 15px;
+			right: 15px;
+		}
+	}
+	/*CSS cho nút phóng to thu nhỏ  */
+	.chatbot-controls {
+		display: flex;
+		align-items: center;
+		z-index: 11;
+	}
+
+	.chatbot-header .size-toggle {
+		background: none;
+		border: none;
+		color: white;
+		cursor: pointer;
+		padding: 0 8px;
+		display: flex;
+		font-size: 16px;
+	}
+	.chatbot-header #close-chat {
+		background: none;
+		border: none;
+		color: white;
+		font-size: 20px;
+		cursor: pointer;
+	}
+
+	body .chatbot-wrapper.maximized {
+		width: 80vw;
+		height: 80vh;
+		max-width: none;
+		max-height: none;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		position: fixed;
+		top: 10vh;
+		left: 10vw;
+		right: 10vw;
+		bottom: 10vh;
+		z-index: 9999; 
+		background: white; 
+		box-shadow: 0 0 20px rgba(0,0,0,0.3); 
+	}
+	
+
+	@media (max-width: 768px) {
+		body .chatbot-wrapper.maximized {
+			width: 90vw;
+			height: 80vh;
+			top: 10vh;
+			left: 5vw;
+			right: 5vw;
+		}
+	}
+	
+	</style>
+
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+		const chatToggle = document.getElementById('chat-toggle');
+		const chatbotWrapper = document.getElementById('chatbot-wrapper');
+		const chatbotHeader = document.querySelector('.chatbot-header'); // Thêm tham chiếu đến header
+		const closeChat = document.getElementById('close-chat');
+		const toggleSize = document.getElementById('toggle-size');
+		let isMaximized = false;
+		
+		// Mở/đóng cửa sổ chat
+		chatToggle.addEventListener('click', function() {
+			chatbotWrapper.style.display = 'flex';
+			// Đảm bảo header luôn hiển thị
+			chatbotHeader.style.display = 'flex';
+			});
+			
+			closeChat.addEventListener('click', function() {
+				chatbotWrapper.style.display = 'none';
+			});
+			
+			// Xử lý phóng to/thu nhỏ
+			toggleSize.addEventListener('click', function() {
+			chatbotWrapper.classList.toggle('maximized');
+			isMaximized = !isMaximized;
+			
+			// Đảm bảo header luôn hiển thị - Quan trọng nhất
+			chatbotHeader.style.display = 'flex';
+			chatbotHeader.style.visibility = 'visible';
+			chatbotHeader.style.opacity = '1';
+
+			// Đảm bảo chatbot nằm trên cùng của trang
+			if (isMaximized) {
+				// Lưu vị trí cũ
+				chatbotWrapper.dataset.oldPosition = chatbotWrapper.style.position || '';
+				chatbotWrapper.dataset.oldBottom = chatbotWrapper.style.bottom || '';
+				chatbotWrapper.dataset.oldRight = chatbotWrapper.style.right || '';
+				
+				// Thiết lập vị trí mới khi phóng to
+				chatbotWrapper.style.position = 'fixed';
+				chatbotWrapper.style.top = '10vh';
+				chatbotWrapper.style.left = '10vw';
+				
+				this.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></svg>';
+			} else {
+				// Khôi phục vị trí cũ
+				chatbotWrapper.style.position = chatbotWrapper.dataset.oldPosition;
+				chatbotWrapper.style.top = '';
+				chatbotWrapper.style.left = '';
+				
+				this.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>';
+			}
+		});
+
+		// Đảm bảo header luôn hiển thị
+		chatbotWrapper.addEventListener('mouseenter', function() {
+			chatbotHeader.style.display = 'flex';
+			chatbotHeader.style.visibility = 'visible';
+			chatbotHeader.style.opacity = '1';
+		});
+
+		chatbotWrapper.addEventListener('mouseleave', function() {
+			if (!isMaximized) {
+				chatbotHeader.style.display = 'none';
+				chatbotHeader.style.visibility = 'hidden';
+				chatbotHeader.style.opacity = '0';
+			}
+		});
+		
+		// Hiển thị chatbot khi trang tải xong
+		if (window.location.hash === '#chat') {
+			chatToggle.click();
+		}
+	});
+	
+	</script>
+
+	
+</body>
+
+</html>
