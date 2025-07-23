@@ -2,13 +2,20 @@ const express = require('express');
 const router = express.Router();
 const db = require('../config/db/connect');
 const { generateText } = require('ai');
-const { openai } = require('@ai-sdk/openai');
+// const { openai } = require('@ai-sdk/openai');
+const { createOpenAI } = require('@ai-sdk/openai'); 
 const dotenv = require('dotenv').config();
 const util = require('util');
 const queryAsync = util.promisify(db.query).bind(db);
 
 console.log('===== RECOMMENDATION ROUTER INITIALIZED =====');
 console.log('OpenAI API Key configured:', process.env.OPENAI_API_KEY ? 'YES' : 'NO');
+console.log('DeepInfra Token configured:', process.env.DEEPINFRA_API_KEY ? 'YES' : 'No');
+
+const deepinfra = createOpenAI({
+    baseURL: 'https://api.deepinfra.com/v1/openai',
+    apiKey: process.env.DEEPINFRA_API_KEY, 
+});
 
 // Hàm để lấy thêm sản phẩm phổ biến nếu không đủ 20 items
 async function fetchAdditionalProducts(existingProductIds, limit) {
@@ -328,17 +335,21 @@ ${productList}
 
 Return only a JSON array of product_variant_ids in your recommended order. Format: ["id1", "id2", "id3", ...]`;
 
-        console.log('[processAndRecommendProducts] Calling OpenAI API');
-        console.log('[processAndRecommendProducts] Model: gpt-4o');
+        // console.log('[processAndRecommendProducts] Calling OpenAI API');
+        // console.log('[processAndRecommendProducts] Model: gpt-4o');
+        console.log('[processAndRecommendProducts] Calling DeepInfra API');
+        const modelId = 'meta-llama/Meta-Llama-3-70B-Instruct';
+        console.log(`[processAndRecommendProducts] Model: ${modelId}`);
         
         try {
             // Gọi API OpenAI để lấy recommendation sử dụng generateText từ ai SDK
             const startTime = Date.now();
             
             const { text: content } = await generateText({
-                model: openai('gpt-4o'),
+                model: deepinfra(modelId),
                 system: "You are a product recommendation assistant. Return only JSON format without any explanation.",
                 prompt: prompt,
+                response_format: {"type":"json_object"},
                 temperature: 0.9,
                 max_tokens: 500
             });
