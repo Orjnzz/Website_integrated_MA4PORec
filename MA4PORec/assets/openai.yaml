@@ -1,0 +1,2 @@
+deepinfra_api_key: 'your_api_key'
+deepinfra_base_url: 'https://api.deepinfra.com/v1/openai'
